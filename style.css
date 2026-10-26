@@ -1,0 +1,234 @@
+/* ==========================================================================
+   TUGAS PROGRES PEMROGRAMAN WEB: LAYAR YANG MELAYANI
+   Nama Mahasiswa : Velove Regina Keyza Kaligis (dan Tim)
+   Deskripsi      : Progres Pembuatan Web Multi-Halaman Berbasis Kategori
+   Ketentuan Dosen: Minimal 5 Tag HTML dengan 2-3 Properti CSS per Tag
+   Palet Warna    : Merah Marun (#531824) sesuai referensi desain
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   SYARAT UTAMA DOSEN: 5 TAG HTML DENGAN 2 SAMPAI 3 PROPERTI CSS
+   -------------------------------------------------------------------------- */
+
+/* TAG 1: body (3 Properti: warna latar, warna font, jenis font) */
+body {
+    background-color: #FAF7F5;
+    color: #443336;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* TAG 2: header (3 Properti: padding vertikal/horizontal, batas bawah, posisi) */
+header {
+    padding: 20px 0;
+    border-bottom: 1px solid #EADBDB;
+    background-color: #FAF7F5;
+}
+
+/* TAG 3: h1 (3 Properti: warna merah marun, ukuran huruf, jenis font serif) */
+h1 {
+    color: #531824;
+    font-size: 52px;
+    font-family: 'Playfair Display', serif;
+}
+
+/* TAG 4: p (3 Properti: ukuran huruf, jarak baris, margin bawah) */
+p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* TAG 5: button (3 Properti: warna latar merah marun, warna teks, sudut membulat) */
+button {
+    background-color: #531824;
+    color: #FFFFFF;
+    border-radius: 50px;
+}
+
+/* --------------------------------------------------------------------------
+   STYLING BERDASARKAN ID (Sesuai Referensi Desain Gambar Mockup)
+   -------------------------------------------------------------------------- */
+
+/* ID untuk Brand Logo di Navbar */
+#brand-logo {
+    color: #531824;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+/* ID untuk Navigasi Menu */
+#nav-menu .nav-link {
+    color: #443336;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 8px 18px;
+    transition: color 0.2s ease;
+}
+
+#nav-menu .nav-link:hover,
+#nav-menu .nav-link.active {
+    color: #531824;
+    font-weight: 700;
+}
+
+/* ID untuk Tombol Kunjungi Kami */
+#btn-kunjungi {
+    background-color: #531824;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: background-color 0.2s ease;
+}
+
+#btn-kunjungi:hover {
+    background-color: #3e101a;
+    color: #FFFFFF;
+}
+
+/* ID untuk Hero Section Utama */
+#hero-section {
+    position: relative;
+    padding: 110px 20px 140px 20px;
+    text-align: center;
+    background-color: #FAF7F5;
+    background-image: radial-gradient(#E8DADA 1px, transparent 1px);
+    background-size: 24px 24px;
+    overflow: hidden;
+}
+
+/* Salib Watermark di Latar Belakang (Transparan) */
+#hero-cross-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 420px;
+    color: rgba(83, 24, 36, 0.035);
+    font-family: 'Playfair Display', serif;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+
+/* Frame Pembungkus Konten Hero */
+#hero-content-box {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 30px;
+}
+
+/* Aksen Bracket Sudut Khas Mockup */
+.bracket-top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    border-top: 2.5px solid #531824;
+    border-left: 2.5px solid #531824;
+}
+
+.bracket-top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    border-top: 2.5px solid #531824;
+    border-right: 2.5px solid #531824;
+}
+
+/* ID untuk Judul Utama */
+#hero-title {
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+}
+
+/* ID untuk Kutipan Ayat Alkitab (Markus 10:45) */
+#hero-scripture {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: italic;
+    color: #443336;
+}
+
+/* ID untuk Tombol Mulai Jelajahi */
+#btn-jelajah {
+    background-color: #531824;
+    color: #FFFFFF;
+    border: none;
+    padding: 14px 38px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(83, 24, 36, 0.15);
+    transition: all 0.25s ease;
+}
+
+#btn-jelajah:hover {
+    background-color: #3e101a;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(83, 24, 36, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   STYLING HALAMAN SECTION (Sederhana, Bersih, Tanpa Kategori)
+   -------------------------------------------------------------------------- */
+.section-wrapper {
+    padding: 60px 20px 100px 20px;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: #531824;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.section-desc {
+    color: #6E565A;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.simple-card {
+    background-color: #FFFFFF;
+    border: 1px solid #EADBDB;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+}
+
+.btn-simple {
+    background-color: #531824;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 26px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+}
+
+.btn-simple:hover {
+    background-color: #3e101a;
+    color: #FFFFFF;
+}
