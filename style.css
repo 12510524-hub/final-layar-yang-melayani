@@ -1,0 +1,173 @@
+/* TUGAS PROGRES: LAYAR YANG MELAYANI */
+
+/* 5 TAG UTAMA (SYARAT DOSEN: 2-3 Properti) */
+body {
+    background-color: #FAF7F5;
+    color: #443336;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+header {
+    padding: 20px 0;
+    border-bottom: 1px solid #EADBDB;
+    background-color: #FAF7F5;
+}
+h1 {
+    color: #531824;
+    font-size: 52px;
+    font-family: 'Playfair Display', serif;
+}
+p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+button {
+    background-color: #531824;
+    color: #FFFFFF;
+    border-radius: 50px;
+}
+
+/* NAVBAR & BRAND */
+#brand-logo {
+    color: #531824;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+#nav-menu .nav-link {
+    color: #443336;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 8px 18px;
+    transition: color 0.2s ease;
+}
+#nav-menu .nav-link:hover,
+#nav-menu .nav-link.active {
+    color: #531824;
+    font-weight: 700;
+}
+#btn-kunjungi {
+    background-color: #531824;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: background-color 0.2s ease;
+}
+#btn-kunjungi:hover {
+    background-color: #3e101a;
+    color: #FFFFFF;
+}
+
+/* HERO SECTION */
+#hero-section {
+    position: relative;
+    padding: 110px 20px 140px;
+    text-align: center;
+    background: #FAF7F5 radial-gradient(#E8DADA 1px, transparent 1px);
+    background-size: 24px 24px;
+    overflow: hidden;
+}
+#hero-cross-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 420px;
+    color: rgba(83, 24, 36, 0.035);
+    font-family: 'Playfair Display', serif;
+    pointer-events: none;
+    user-select: none;
+}
+#hero-content-box {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 30px;
+}
+.bracket-top-left, .bracket-top-right {
+    position: absolute;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    border-top: 2.5px solid #531824;
+}
+.bracket-top-left { left: 0; border-left: 2.5px solid #531824; }
+.bracket-top-right { right: 0; border-right: 2.5px solid #531824; }
+#hero-title {
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+}
+#hero-scripture {
+    max-width: 720px;
+    margin: 0 auto 30px;
+    font-style: italic;
+    color: #443336;
+}
+#btn-jelajah {
+    background-color: #531824;
+    color: #FFFFFF;
+    border: none;
+    padding: 14px 38px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(83, 24, 36, 0.15);
+    transition: all 0.25s ease;
+}
+#btn-jelajah:hover {
+    background-color: #3e101a;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(83, 24, 36, 0.25);
+}
+
+/* SECTION PAGES & CARDS */
+.section-wrapper {
+    padding: 60px 20px 100px;
+    max-width: 860px;
+    margin: 0 auto;
+}
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: #531824;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.section-desc {
+    color: #6E565A;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    text-align: center;
+}
+.simple-card {
+    background-color: #FFFFFF;
+    border: 1px solid #EADBDB;
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+}
+.btn-simple {
+    background-color: #531824;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 26px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+}
+.btn-simple:hover {
+    background-color: #3e101a;
+    color: #FFFFFF;
+}
