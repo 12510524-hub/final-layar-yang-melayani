@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Terbuka Pendeta - Layar yang Melayani</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #faf6f2;
+        }
+        .navbar-dash {
+            background-color: #531824;
+        }
+        .btn-burgundy {
+            background-color: #531824;
+            color: #fff;
+            font-weight: 600;
+            border: none;
+        }
+        .btn-burgundy:hover {
+            background-color: #3b111a;
+            color: #fff;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #531824;
+        }
+        .nav-pills .nav-link {
+            color: #531824;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR DASHBOARD -->
+    <nav class="navbar navbar-dash navbar-dark px-3 py-3 shadow-sm sticky-top">
+        <div class="container">
+            <a href="janicewebdesign.html" class="navbar-brand fw-bold" style="font-family: 'Playfair Display', serif;">
+                † Layar yang Melayani <span class="badge bg-light text-dark ms-2 fw-normal fs-6">Portal Pendeta</span>
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <a href="janicewebdesign.html" class="btn btn-sm btn-outline-light">&larr; Kembali ke Web Utama</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- KONTEN UTAMA -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                
+                <!-- Banner Penyambutan Terbuka -->
+                <div class="card border-0 shadow-sm p-4 mb-4 bg-white" style="border-radius: 14px;">
+                    <h3 class="fw-bold mb-1" style="font-family: 'Playfair Display', serif; color: #2b1117;">
+                        Ruang Kontribusi Firman & Khotbah
+                    </h3>
+                    <p class="text-secondary small mb-0">
+                        Ruang terbuka bagi Pendeta, pelayan, atau kontributor untuk memperbarui ayat renungan harian dan membagikan teks naskah khotbah tanpa memerlukan kata sandi.
+                    </p>
+                </div>
+
+                <!-- TAB PILIHAN INPUT -->
+                <ul class="nav nav-pills nav-fill mb-3 bg-white p-2 rounded-3 shadow-sm" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" id="tab-ayat-btn" data-bs-toggle="pill" data-bs-target="#tab-ayat" type="button">
+                            📖 Input Ayat & Renungan
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="tab-khotbah-btn" data-bs-toggle="pill" data-bs-target="#tab-khotbah" type="button">
+                            ✍️ Input Naskah Khotbah Baru
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="pills-tabContent">
+                    
+                    <!-- 1. FORM INPUT AYAT HARIAN -->
+                    <div class="tab-pane fade show active" id="tab-ayat" role="tabpanel">
+                        <div class="card border-0 shadow-sm p-4 bg-white" style="border-radius: 14px;">
+                            <h4 class="fw-bold mb-3" style="color: #531824;">Perbarui Ayat Hari Ini</h4>
+                            
+                            <form id="formAyat" onsubmit="simpanData(event, 'Ayat Renungan')">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Nama Pengirim / Pendeta</label>
+                                    <input type="text" class="form-control" placeholder="Contoh: Pdt. Samuel Alexander" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Referensi Kitab & Ayat</label>
+                                    <input type="text" class="form-control" placeholder="Contoh: Filipi 4:6 atau Mazmur 23:1" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Isi Teks Firman</label>
+                                    <textarea class="form-control" rows="3" placeholder="Tuliskan bunyi firman Tuhan lengkap di sini..." required></textarea>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label fw-semibold">Pesan Renungan Singkat</label>
+                                    <textarea class="form-control" rows="2" placeholder="Tuliskan pesan peneguhan singkat untuk jemaat..."></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-burgundy px-4">Terbitkan Ayat ke Web</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- 2. FORM INPUT KHOTBAH -->
+                    <div class="tab-pane fade" id="tab-khotbah" role="tabpanel">
+                        <div class="card border-0 shadow-sm p-4 bg-white" style="border-radius: 14px;">
+                            <h4 class="fw-bold mb-3" style="color: #531824;">Unggah Naskah Khotbah Baru</h4>
+
+                            <form id="formKhotbah" onsubmit="simpanData(event, 'Naskah Khotbah')">
+                                <div class="row">
+                                    <div class="col-md-7 mb-3">
+                                        <label class="form-label fw-semibold">Tema / Judul Khotbah</label>
+                                        <input type="text" class="form-control" placeholder="Contoh: Kasih Karunia yang Memulihkan" required>
+                                    </div>
+                                    <div class="col-md-5 mb-3">
+                                        <label class="form-label fw-semibold">Nama Pembicara / Pendeta</label>
+                                        <input type="text" class="form-control" placeholder="Contoh: Pdt. Solagratia Ratu, M.Th." required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-semibold">Ayat Dasar Alkitab</label>
+                                        <input type="text" class="form-control" placeholder="Contoh: Efesus 2:8-9" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-semibold">Seri Khotbah</label>
+                                        <input type="text" class="form-control" placeholder="Contoh: Seri Kasih / Seri Iman">
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label fw-semibold">Isi Teks / Naskah Intisari Khotbah</label>
+                                    <textarea class="form-control" rows="4" placeholder="Tuliskan naskah atau poin-poin penting isi khotbah untuk jemaat..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-burgundy px-4">Publikasikan Teks Khotbah</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Notifikasi Berhasil -->
+                <div id="suksesAlert" class="alert alert-success mt-4 d-none shadow-sm" role="alert">
+                    ✨ <strong>Puji Tuhan!</strong> <span id="namaKonten"></span> berhasil diterbitkan ke website.
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT TANPA CEK PASSWORD / BEBAS AKSES -->
+    <script>
+        function simpanData(e, jenis) {
+            e.preventDefault();
+            document.getElementById('namaKonten').textContent = jenis;
+            const alertBox = document.getElementById('suksesAlert');
+            alertBox.classList.remove('d-none');
+            e.target.reset();
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            setTimeout(() => { alertBox.classList.add('d-none'); }, 4000);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

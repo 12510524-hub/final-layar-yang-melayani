@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layar yang Melayani</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #333;
+            background-color: #faf6f2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navigasi Aktif */
+        .nav-link {
+            font-weight: 500;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .nav-link:hover {
+            color: #531824;
+        }
+        .nav-link.active-menu {
+            color: #531824 !important;
+            font-weight: 700;
+        }
+        .nav-link.active-menu::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2.5px;
+            background-color: #531824;
+            border-radius: 2px;
+        }
+
+        /* Wadah Konten Utama (Pas Satu Layar) */
+        #main-viewport {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 15px;
+        }
+
+        /* Sistem Ganti Layar */
+        .app-section {
+            display: none;
+            width: 100%;
+            max-width: 1100px;
+            animation: fadeIn 0.4s ease-in-out forwards;
+        }
+        .app-section.active-section {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Aksen & Tombol Burgundy */
+        .btn-burgundy {
+            background-color: #531824;
+            color: #ffffff;
+            border-radius: 8px;
+            padding: 8px 22px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-burgundy:hover {
+            background-color: #3b111a;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .card-custom {
+            border-radius: 14px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+
+        /* Desain Bubble Teks Khotbah */
+        .bubble-khotbah {
+            background-color: #ffffff;
+            border: 1px solid #ebdcd5;
+            border-radius: 16px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 6px 18px rgba(83, 24, 36, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .bubble-khotbah:hover {
+            transform: translateY(-5px);
+            border-color: #531824;
+            box-shadow: 0 12px 28px rgba(83, 24, 36, 0.12);
+        }
+
+        /* Galeri Foto Pelayanan */
+        .foto-galeri {
+            height: 110px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .foto-galeri:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. NAVBAR PERMANEN DI ATAS -->
+    <header class="border-bottom py-3 bg-white shadow-sm sticky-top">
+        <div class="container">
+            <nav id="main-navbar" class="navbar navbar-expand-lg p-0">
+                <a id="brand-logo" class="navbar-brand d-flex align-items-center fw-bold" href="javascript:void(0)" onclick="bukaLayar('sec-beranda', document.getElementById('nav-beranda'))" style="color: #531824;">
+                    <span class="me-2 fs-5">†</span> Layar yang Melayani
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-menu" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="nav-menu">
+                    <ul class="navbar-nav align-items-center mb-2 mb-lg-0 me-lg-4 gap-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link active-menu" id="nav-beranda" onclick="bukaLayar('sec-beranda', this)">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-firman" onclick="bukaLayar('sec-firman', this)">Firman Tuhan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-khotbah" onclick="bukaLayar('sec-khotbah', this)">Arsip Khotbah</a>
+                        </li>
+                        <!-- NAMA MENU SUDAH DIPERBARUI DI SINI -->
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-pelayan" onclick="bukaLayar('sec-pelayan', this)">Mengenal Pelayan Mimbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-ruang-pelayanan" onclick="bukaLayar('sec-ruang-pelayanan', this)">Ruang Pelayanan</a>
+                        </li>
+                    </ul>
+                    <button class="btn btn-burgundy" type="button" onclick="bukaLayar('sec-pelayan', document.getElementById('nav-pelayan'))">Kunjungi Kami</button>
+                    <!-- PORTAL TERBUKA TANPA KUNCI -->
+                    <a href="dashboard-pdt.html" class="btn btn-outline-secondary ms-2" title="Ruang Terbuka Input Khotbah & Firman">✍️ Portal Pendeta</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. WADAH KONTEN UTAMA -->
+    <main id="main-viewport">
+
+        <!-- ================= HALAMAN 1: BERANDA ================= -->
+        <section id="sec-beranda" class="app-section active-section text-center">
+            <div class="card card-custom bg-white p-5 mx-auto" style="max-width: 850px;">
+                <div class="fs-1 text-danger-emphasis mb-2">†</div>
+                <h1 class="font-serif fw-bold display-5 mb-3" style="color: #2b1117;">Layar yang Melayani</h1>
+                <p class="lead fst-italic text-secondary mb-4 px-md-4" style="line-height: 1.8;">
+                    "Karena Anak Manusia juga datang bukan untuk dilayani, melainkan untuk melayani dan untuk memberikan nyawa-Nya menjadi tebusan bagi banyak orang."
+                    <strong class="d-block mt-3 font-monospace text-uppercase not-italic fw-bold" style="font-size: 14px; letter-spacing: 2px; color: #531824;">
+                        — Markus 10:45
+                    </strong>
+                </p>
+                <div>
+                    <button class="btn btn-burgundy btn-lg px-4 fs-6" onclick="bukaLayar('sec-firman', document.getElementById('nav-firman'))">
+                        Mulai Jelajahi Firman &rarr;
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= HALAMAN 2: FIRMAN TUHAN ================= -->
+        <section id="sec-firman" class="app-section text-center">
+            <div class="card card-custom p-5 mx-auto text-white shadow-lg" style="max-width: 850px; background-color: #531824;">
+                <span class="text-uppercase fw-semibold" style="letter-spacing: 2px; font-size: 13px; color: #f4c2c2;">Ayat Hari Ini</span>
+                <blockquote class="my-4 font-serif fst-italic" style="font-size: 1.5rem; line-height: 1.8;">
+                    "Janganlah hendaknya kamu kuatir tentang apa pun juga, tetapi nyatakanlah dalam segala hal keinginanmu kepada Allah dalam doa dan permohonan dengan ucapan syukur."
+                </blockquote>
+                <cite class="d-block fw-semibold font-monospace text-uppercase not-italic mb-4" style="letter-spacing: 2px; color: #fdfaf7;">
+                    — Filipi 4:6
+                </cite>
+                <div class="p-3 bg-white text-dark rounded-3 mx-auto text-start" style="max-width: 700px;">
+                    <h6 class="fw-bold mb-1" style="color: #531824;">💡 Renungan Singkat:</h6>
+                    <p class="small text-muted mb-0">Kekhawatiran tidak pernah menyelesaikan hari esok, tetapi hanya merampas damai sejahtera hari ini. Bawalah seluruh bebanmu dalam doa dan penyerahan penuh kepada-Nya.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= HALAMAN 3: ARSIP KHOTBAH (3 BUBBLE) ================= -->
+        <section id="sec-khotbah" class="app-section">
+            <div class="card card-custom bg-white p-4 mx-auto" style="max-width: 1050px;">
+                <div class="text-center mb-4">
+                    <span class="text-uppercase fw-bold" style="color: #531824; font-size: 11px; letter-spacing: 2px;">Mimbar Tertulis</span>
+                    <h3 class="font-serif fw-bold mt-1" style="color: #2b1117;">Arsip & Naskah Teks Khotbah</h3>
+                    <p class="text-secondary small mb-0">Pelajari intisari pesan firman Tuhan yang telah disampaikan oleh hamba-Nya.</p>
+                </div>
+
+                <div class="row g-3">
+                    <!-- BUBBLE 1 -->
+                    <div class="col-md-4">
+                        <div class="bubble-khotbah h-100">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge" style="background-color: #531824;">Seri Kasih</span>
+                                    <small class="text-muted" style="font-size: 11px;">Minggu, 26 Okt</small>
+                                </div>
+                                <h5 class="fw-bold font-serif mb-1" style="color: #2b1117;">Kasih Karunia yang Memulihkan</h5>
+                                <div class="text-danger-emphasis fw-semibold font-monospace small mb-3">📖 Efesus 2:8-9</div>
+                                
+                                <p class="text-secondary small" style="line-height: 1.6;">
+                                    "Tuhan tidak mencari orang yang sempurna, melainkan hati yang bersedia dibentuk. Kasih karunia bukanlah alasan untuk tetap berbuat dosa, melainkan kuasa illahi yang memampukan kita bangkit dari masa lalu."
+                                </p>
+                            </div>
+                            <div class="border-top pt-2 mt-2">
+                                <small class="text-muted fst-italic d-block" style="font-size: 11px;">
+                                    <strong>Poin Inti:</strong> Keselamatan adalah anugerah cuma-cuma, bukan hasil usaha manusia.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BUBBLE 2 -->
+                    <div class="col-md-4">
+                        <div class="bubble-khotbah h-100">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge bg-secondary">Seri Iman</span>
+                                    <small class="text-muted" style="font-size: 11px;">Minggu, 19 Okt</small>
+                                </div>
+                                <h5 class="fw-bold font-serif mb-1" style="color: #2b1117;">Kekuatan di Tengah Badai</h5>
+                                <div class="text-danger-emphasis fw-semibold font-monospace small mb-3">📖 Mazmur 46:2-3</div>
+                                
+                                <p class="text-secondary small" style="line-height: 1.6;">
+                                    "Ketika badai persoalan datang, fokus kita bukan pada seberapa besar badai tersebut, melainkan seberapa besar Allah yang menyertai perahu hidup kita. Damai sejahtera-Nya melampaui segala akal manusia."
+                                </p>
+                            </div>
+                            <div class="border-top pt-2 mt-2">
+                                <small class="text-muted fst-italic d-block" style="font-size: 11px;">
+                                    <strong>Poin Inti:</strong> Jangan biarkan rasa takut membungkam keyakinanmu pada janji Tuhan.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BUBBLE 3 -->
+                    <div class="col-md-4">
+                        <div class="bubble-khotbah h-100">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge" style="background-color: #531824;">Seri Karakter</span>
+                                    <small class="text-muted" style="font-size: 11px;">Minggu, 12 Okt</small>
+                                </div>
+                                <h5 class="fw-bold font-serif mb-1" style="color: #2b1117;">Terang di Era Digital</h5>
+                                <div class="text-danger-emphasis fw-semibold font-monospace small mb-3">📖 Matius 5:14-16</div>
+                                
+                                <p class="text-secondary small" style="line-height: 1.6;">
+                                    "Layar gawai yang kita tatap setiap hari bisa menjadi sarana memuliakan Tuhan atau menjauhkan kita dari-Nya. Jadikan setiap ketikan dan interaksimu sebagai terang kasih yang memberkati sesama."
+                                </p>
+                            </div>
+                            <div class="border-top pt-2 mt-2">
+                                <small class="text-muted fst-italic d-block" style="font-size: 11px;">
+                                    <strong>Poin Inti:</strong> Hidup berbuah nyata bukan hanya di gereja, tapi juga di media sosial.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= HALAMAN 4: MENGENAL PELAYAN MIMBAR ================= -->
+        <section id="sec-pelayan" class="app-section">
+            <div class="card card-custom bg-white p-4 p-md-4 mx-auto" style="max-width: 950px;">
+                <div class="row g-4 align-items-center">
+                    
+                    <div class="col-md-4 text-center border-end-md">
+                        <div class="position-relative d-inline-block mb-3">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=350&q=80" 
+                                 alt="Foto Pendeta" 
+                                 class="rounded-circle shadow" 
+                                 style="width: 150px; height: 150px; object-fit: cover; border: 4px solid #531824;">
+                            <span class="badge position-absolute bottom-0 start-50 translate-middle-x text-white px-3 py-1 shadow-sm" style="background-color: #531824; font-size: 11px; border-radius: 20px;">
+                                Gembala Jemaat
+                            </span>
+                        </div>
+                        <h4 class="fw-bold font-serif mb-1" style="color: #2b1117;">Pdt. Solagratia Ratu</h4>
+                        <p class="text-muted small mb-2">Sarjana & Magister Teologi (M.Th.)</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <span class="badge bg-light text-dark border">Pelayan Firman</span>
+                            <span class="badge bg-light text-dark border">Konselor</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 ps-md-4">
+                        <span class="text-uppercase fw-bold" style="color: #531824; font-size: 11px; letter-spacing: 2px;">Mengenal Pelayan Mimbar</span>
+                        <h3 class="font-serif fw-bold mt-1 mb-2" style="color: #2b1117; font-size: 1.6rem;">Menabur Kasih, Membangun Generasi</h3>
+                        <p class="text-secondary small mb-3" style="line-height: 1.7;">
+                            Telah melayani lebih dari 12 tahun dalam penggembalaan jemaat dan pembinaan keluarga. Memiliki kerinduan mendalam agar kebenaran firman Tuhan dapat disampaikan secara relevan, sederhana, dan menjangkau setiap hati yang rindu dipulihkan.
+                        </p>
+
+                        <div class="mt-3">
+                            <h6 class="fw-bold small text-muted text-uppercase mb-2" style="letter-spacing: 1px;">Dokumentasi Pelayanan:</h6>
+                            <div class="row g-2">
+                                <div class="col-4">
+                                    <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=300&q=80" class="w-100 foto-galeri shadow-sm" alt="Pelayanan Mimbar">
+                                    <div class="text-center mt-1 text-muted" style="font-size: 11px;">Pelayanan Mimbar</div>
+                                </div>
+                                <div class="col-4">
+                                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=300&q=80" class="w-100 foto-galeri shadow-sm" alt="Doa Bersama">
+                                    <div class="text-center mt-1 text-muted" style="font-size: 11px;">Doa & Konseling</div>
+                                </div>
+                                <div class="col-4">
+                                    <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=300&q=80" class="w-100 foto-galeri shadow-sm" alt="Aksi Kasih">
+                                    <div class="text-center mt-1 text-muted" style="font-size: 11px;">Pelayanan Kasih</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= HALAMAN 5: RUANG PELAYANAN (DOA) ================= -->
+        <section id="sec-ruang-pelayanan" class="app-section">
+            <div class="card card-custom bg-white p-4 p-md-5 mx-auto" style="max-width: 650px;">
+                <div class="text-center mb-3">
+                    <div class="fs-2">🕊️</div>
+                    <h3 class="font-serif fw-bold" style="color: #2b1117;">Dukungan & Pokok Doa</h3>
+                    <p class="text-muted small">Kamu tidak perlu memikul bebanmu sendirian. Tuliskan permohonanmu dan tim kami akan mendoakannya.</p>
+                </div>
+                <form onsubmit="kirimDoa(event)">
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">Nama Kamu (Boleh Inisial / Samaran)</label>
+                        <input type="text" class="form-control" placeholder="Contoh: Janice" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">Pokok Doa / Hal yang Didoakan</label>
+                        <textarea class="form-control" rows="3" placeholder="Tuliskan isi hatimu atau hal yang sedang kamu gumulkan..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-burgundy w-100">Kirim Permohonan Doa</button>
+                    <div id="doaTerkirim" class="alert alert-success mt-3 py-2 small d-none text-center">
+                        ✨ Pokok doamu telah terkirim ke tim pelayan. Tuhan Yesus memberkati!
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 3. JAVASCRIPT GANTI LAYAR -->
+    <script>
+        function bukaLayar(idSection, elemenMenu) {
+            document.querySelectorAll('.app-section').forEach(sec => {
+                sec.classList.remove('active-section');
+            });
+
+            const target = document.getElementById(idSection);
+            if (target) {
+                target.classList.add('active-section');
+            }
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active-menu');
+            });
+            if (elemenMenu) {
+                elemenMenu.classList.add('active-menu');
+            }
+
+            const navMenu = document.getElementById('nav-menu');
+            if (navMenu.classList.contains('show')) {
+                bootstrap.Collapse.getInstance(navMenu)?.hide();
+            }
+        }
+
+        function kirimDoa(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('doaTerkirim');
+            alertBox.classList.remove('d-none');
+            e.target.reset();
+            setTimeout(() => { alertBox.classList.add('d-none'); }, 4000);
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
