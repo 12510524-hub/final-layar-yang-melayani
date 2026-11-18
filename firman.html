@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firman Tuhan - Layar yang Melayani</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #333;
+            background-color: #faf6f2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .nav-link:hover {
+            color: #531824;
+        }
+        .nav-link.active-menu {
+            color: #531824 !important;
+            font-weight: 700;
+        }
+        .nav-link.active-menu::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2.5px;
+            background-color: #531824;
+            border-radius: 2px;
+        }
+        #main-viewport {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 15px;
+        }
+        .btn-burgundy {
+            background-color: #531824;
+            color: #ffffff;
+            border-radius: 8px;
+            padding: 8px 22px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-burgundy:hover {
+            background-color: #3b111a;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+        .card-custom {
+            border-radius: 14px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR PERMANEN DI ATAS -->
+    <header class="border-bottom py-3 bg-white shadow-sm sticky-top">
+        <div class="container">
+            <nav id="main-navbar" class="navbar navbar-expand-lg p-0">
+                <a id="brand-logo" class="navbar-brand d-flex align-items-center fw-bold" href="index.html" style="color: #531824;">
+                    <span class="me-2 fs-5">†</span> Layar yang Melayani
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav-menu" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="nav-menu">
+                    <ul class="navbar-nav align-items-center mb-2 mb-lg-0 me-lg-4 gap-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-beranda" href="index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active-menu" id="nav-firman" href="firman.html">Firman Tuhan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-khotbah" href="khotbah.html">Arsip Khotbah</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-pelayan" href="pelayan.html">Mengenal Pelayan Mimbar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-ruang-pelayanan" href="doa.html">Ruang Pelayanan</a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-burgundy rounded-pill text-nowrap" href="pelayan.html">Kunjungi Kami</a>
+                    <a href="jadwal.html" class="btn btn-outline-secondary rounded-pill text-nowrap ms-2" title="Jadwal Ibadah">Jadwal Ibadah</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- KONTEN UTAMA: FIRMAN TUHAN -->
+    <main id="main-viewport">
+        <section id="sec-firman" class="text-center w-100" style="max-width: 1100px;">
+            <div class="card card-custom p-5 mx-auto text-white shadow-lg" style="max-width: 850px; background-color: #531824;">
+                <span class="text-uppercase fw-semibold" style="letter-spacing: 2px; font-size: 13px; color: #f4c2c2;">Ayat Hari Ini</span>
+                <blockquote class="my-4 font-serif fst-italic" style="font-size: 1.5rem; line-height: 1.8;">
+                    "Janganlah hendaknya kamu kuatir tentang apa pun juga, tetapi nyatakanlah dalam segala hal keinginanmu kepada Allah dalam doa dan permohonan dengan ucapan syukur."
+                </blockquote>
+                <cite class="d-block fw-semibold font-monospace text-uppercase not-italic mb-4" style="letter-spacing: 2px; color: #fdfaf7;">
+                    — Filipi 4:6
+                </cite>
+                <div class="p-3 bg-white text-dark rounded-3 mx-auto text-start" style="max-width: 700px;">
+                    <h6 class="fw-bold mb-1" style="color: #531824;">💡 Renungan Singkat:</h6>
+                    <p class="small text-muted mb-0">Kekhawatiran tidak pernah menyelesaikan hari esok, tetapi hanya merampas damai sejahtera hari ini. Bawalah seluruh bebanmu dalam doa dan penyerahan penuh kepada-Nya.</p>
+                </div>
+                <div class="mt-4">
+                    <a href="khotbah.html" class="btn btn-light text-dark fw-semibold px-4 me-2">Lihat Arsip Khotbah &rarr;</a>
+                    <a href="doa.html" class="btn btn-outline-light px-4">Titip Pokok Doa</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
